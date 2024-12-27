@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
+from django.contrib import messages
 # Create your views here.
 def home(request) :
    return render(request,'auth/home.html',{})
@@ -30,6 +31,7 @@ def login_view(request):
            return redirect('/home')
      else :
         form=AuthenticationForm()
+     messages.success(request,"Incorrect Login Credentials")
      return render(request,'auth/login.html',{'form':form})     
 
 def dashboard(request) :
